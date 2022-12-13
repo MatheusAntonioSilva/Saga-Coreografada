@@ -12,6 +12,16 @@ Rails.application.configure do
   config.app.databases.default.port = '3306'
   config.app.databases.default.database = 'order_api_db_development'
 
+  config.app.sidekiq.user = 'sidekiq'
+  config.app.sidekiq.password = Rails.application.credentials.config[:sidekiq][:password]
+
+  config.app.sidekiq.redis.url = 'redis://redis:6379/0'
+  config.app.sidekiq.redis.password = nil
+
+  config.app.payment_api.url = 'http://localhost:3000'
+  config.app.receivable_api.url = 'http://localhost:7000'
+  config.app.account_api.url = 'http://localhost:6000'
+
   # config.session_store :order_api_store
   # config.session_store :cookie_store, key: "_your_app_session"
 

@@ -8,6 +8,6 @@ class ::V0::OrdersController < ::V0::ApplicationController
   private
 
   def order_params
-    params.permit(:description, :order_id)
+    params.permit(:description, :amount, customer: [:name, :phone], payment: [:flag, :card_reference, :split])
   end
 end

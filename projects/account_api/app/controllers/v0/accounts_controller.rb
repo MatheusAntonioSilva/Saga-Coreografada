@@ -5,6 +5,11 @@ class ::V0::AccountsController < ::V0::ApplicationController
     render json: creator.create, status: :created, serializer: ::V0::AccountSerializer::Model
   end
 
+  def destroy
+    destroyer = ::AccountManager::Destroyer.new(params.permit(:id))
+    render json: destroyer.destroy, status: :success, serializer: ::V0::AccountSerializer::Model
+  end
+
   private
 
   def account_params

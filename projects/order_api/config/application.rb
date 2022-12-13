@@ -32,6 +32,13 @@ module OrderApi
     config.app.databases = OpenStruct.new
     config.app.databases.default = OpenStruct.new
 
+    config.app.sidekiq = OpenStruct.new
+    config.app.sidekiq.redis = OpenStruct.new
+
+    config.app.payment_api = OpenStruct.new
+    config.app.receivable_api = OpenStruct.new
+    config.app.account_api = OpenStruct.new
+
     config.i18n.locale = DEFAULT_LOCALE
     config.i18n.default_locale = DEFAULT_LOCALE
     config.i18n.load_path += Dir[File.join(Rails.root, 'config', 'locales', '**', '*.{rb,yml}')]
