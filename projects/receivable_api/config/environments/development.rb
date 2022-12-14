@@ -12,6 +12,9 @@ Rails.application.configure do
   config.app.databases.default.port = '3306'
   config.app.databases.default.database = 'receivable_api_db_development'
 
+  config.app.kafka.seed_brokers = ['kafka:9092']
+  config.app.kafka.client_id = 'example_saga'
+
   # config.session_store :receivable_api_store
   # config.session_store :cookie_store, key: "_your_app_session"
 

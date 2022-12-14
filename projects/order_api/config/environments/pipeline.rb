@@ -20,6 +20,9 @@ Rails.application.configure do
   config.app.sidekiq.user = 'sidekiq'
   config.app.sidekiq.password = Rails.application.credentials.config[:sidekiq][:password]
 
+  config.app.kafka.seed_brokers = ['kafka:9092']
+  config.app.kafka.client_id = 'example_saga'
+
   config.app.sidekiq.redis.url = 'redis://redis:6379/0'
   config.app.sidekiq.redis.password = nil
 

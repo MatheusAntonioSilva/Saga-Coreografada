@@ -85,3 +85,6 @@ gem 'active_model_serializers'
 gem 'ransack'
 
 gem 'httparty'
+
+# Ruby and Rails efficient Kafka processing framework
+gem 'karafka'

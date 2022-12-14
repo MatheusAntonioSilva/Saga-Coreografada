@@ -1,18 +1,14 @@
 module PaymentManager
   class Destroyer < ApplicationManager::Destroyer
 
-    def initialize(id)
-      super(id)
+    attr_reader :order_id
+
+    def initialize(order_id)
+      @order_id = order_id
     end
 
     def destroy
-      super()
-    end
-
-    private
-
-    def instance
-      ::Payment.find(id)
+      ::Payment.where(order_id: order_id).destroy_all
     end
   end
 end

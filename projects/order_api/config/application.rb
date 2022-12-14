@@ -31,6 +31,7 @@ module OrderApi
     config.app = OpenStruct.new
     config.app.databases = OpenStruct.new
     config.app.databases.default = OpenStruct.new
+    config.app.kafka = OpenStruct.new
 
     config.app.sidekiq = OpenStruct.new
     config.app.sidekiq.redis = OpenStruct.new

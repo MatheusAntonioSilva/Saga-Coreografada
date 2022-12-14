@@ -17,6 +17,9 @@ Rails.application.configure do
   config.app.databases.default.port = '3306'
   config.app.databases.default.database = 'account_api_db_pipeline'
 
+  config.app.kafka.seed_brokers = ['kafka:9092']
+  config.app.kafka.client_id = 'example_saga'
+
   # Turn false under Spring and add config.action_view.cache_template_loading = true.
   config.cache_classes = true
 

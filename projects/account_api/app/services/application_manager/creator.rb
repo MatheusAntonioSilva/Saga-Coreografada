@@ -3,7 +3,13 @@ module ApplicationManager
 
     def create(with_transaction = true)
       if with_transaction
-        ActiveRecord::Base.transaction { execute_creation }
+        ActiveRecord::Base.transaction do
+          begin
+            execute_creation
+          rescue ::StandardError
+            produce_rollback
+          end
+        end
       else
         execute_creation
       end
@@ -13,6 +19,10 @@ module ApplicationManager
 
     def execute_creation
       raise NotImplementedError
+    end
+
+    def produce_rollback
+      raise ::NotImplementedError
     end
   end
 end
