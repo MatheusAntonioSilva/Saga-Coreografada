@@ -25,14 +25,6 @@ class KarafkaApp < Karafka::App
     # You ned to define the topic per each queue name you use
     # active_job_topic :default
 
-    consumer_group :created_payment_group_1 do
-      topic :created_payment do
-        consumer ::Payments::CreatedConsumer
-
-        dead_letter_queue(topic: :created_payment_dlt, max_retries: Rails.application.config.app.kafka.max_retries)
-      end
-    end
-
     consumer_group :rollback_payment_group_1 do
       topic :rollback_payment do
         consumer ::Payments::RollbackConsumer
@@ -41,35 +33,11 @@ class KarafkaApp < Karafka::App
       end
     end
 
-    consumer_group :created_receivable_group_1 do
-      topic :created_receivable do
-        consumer ::Receivables::CreatedConsumer
-
-        dead_letter_queue(topic: :created_receivable_dlt, max_retries: Rails.application.config.app.kafka.max_retries)
-      end
-    end
-
-    consumer_group :rollback_receivable_group_1 do
-      topic :rollback_receivable do
-        consumer ::Receivables::RollbackConsumer
-
-        dead_letter_queue(topic: :rollback_receivable_dlt, max_retries: Rails.application.config.app.kafka.max_retries)
-      end
-    end
-
     consumer_group :created_order_group_1 do
       topic :created_order do
         consumer ::Orders::CreatedConsumer
 
         dead_letter_queue(topic: :created_order_dlt, max_retries: Rails.application.config.app.kafka.max_retries)
-      end
-    end
-
-    consumer_group :rollback_order_group_1 do
-      topic :rollback_order do
-        consumer ::Orders::RollbackConsumer
-
-        dead_letter_queue(topic: :rollback_order_dlt, max_retries: Rails.application.config.app.kafka.max_retries)
       end
     end
   end
