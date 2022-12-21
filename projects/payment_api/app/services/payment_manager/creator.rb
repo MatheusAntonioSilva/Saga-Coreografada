@@ -1,7 +1,7 @@
 module PaymentManager
   class Creator < ApplicationManager::Creator
 
-    attr_reader :args
+    attr_reader :args, :payment
 
     def initialize(args)
       @args = args
@@ -10,7 +10,11 @@ module PaymentManager
     private
 
     def execute_creation
-      ::Payment.create!(args)
+      @payment = ::Payment.create!(args)
+    end
+
+    def produce_rollback
+      Karafka.producer.produce_sync(topic: 'rollback_payment', payload: payment.to_h.to_json)
     end
   end
 end

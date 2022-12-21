@@ -31,6 +31,7 @@ module PaymentApi
     config.app = OpenStruct.new
     config.app.databases = OpenStruct.new
     config.app.databases.default = OpenStruct.new
+    config.app.kafka = OpenStruct.new
 
     config.i18n.locale = DEFAULT_LOCALE
     config.i18n.default_locale = DEFAULT_LOCALE
